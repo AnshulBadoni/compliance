@@ -1,0 +1,56 @@
+<!-- <aside
+  class=" -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-gray-100 border-e border-gray-200 pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-800 dark:border-neutral-700"
+  role="dialog" tabindex="-1" aria-label="Sidebar"> -->
+<aside
+  class=" sm:-translate-x-full sm:transition-all duration-300 sm:transform fixed h-screen top-0 start-0 bottom-0 w-64 bg-gray-100 border-e border-gray-200 pt-7 pb-10 overflow-y-auto 
+  md:block md:translate-x-0 md:end-auto md:bottom-0 md:w-28
+  lg:block lg:w-64 lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-800 dark:border-neutral-700"
+  role="dialog" tabindex="-1" aria-label="Sidebar">
+  <div class="px-6">
+    <img class="flex-none w-36 mx-auto" href="#"
+      aria-label="Brand" src="logo.png">
+  </div>
+  <nav class="p-6 w-full flex flex-col flex-wrap">
+    <ul class="space-y-1.5 mt-4">
+      <li *ngFor="let item of navLinks">
+        <a [ngClass]="{'bg-blue-600 text-white dark:bg-blue-800 hover:bg-slate-800' : item.path === router.url.slice(12) || ('' === router.url.slice(12) && item.path === '')}"
+          [routerLink]="[item.path]"
+          class="flex items-center gap-x-3.5 py-3 px-4 text-md text-gray-700 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 dark:text-white"
+          href="#">
+          <div class="path md:mx-auto lg:mx-0" [innerHtml]="item.icon"></div>          
+          <p class="lg:block md:hidden font-semibold">{{item.label}}</p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div
+    class="w-[90%] md:w-[45%] lg:w-[90%] md:[20%] mx-3 md:mx-6 lg:mx-3 absolute bottom-5 bg-gray-100 md:bg-gray-300 lg:bg-gray-100 dark:bg-neutral-700 rounded-md md:rounded-full lg:rounded-md px-3.5 py-3 text-sm text-left font-medium text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500"
+    id="options-menu-button" aria-expanded="false" aria-haspopup="true">
+    <span class="flex lg:flex md:hidden w-full justify-between items-center">
+      <span class="flex min-w-0 items-center justify-between space-x-3">
+        <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"
+          src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+          alt="">
+        <span class="flex-1 flex flex-col min-w-0">
+          <span class="text-gray-900 dark:text-gray-200 text-sm font-medium truncate">Jessy Schwarz</span>
+          <span class="text-gray-500 dark:text-gray-400 text-sm truncate">jessyschwarz</span>
+        </span>
+      </span>
+      <!-- Heroicon name: solid/selector -->
+      <svg [routerLink]="['/auth/sign-in']" class="size-6 text-gray-800 dark:text-white cursor-pointer" aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2" />
+      </svg>
+    </span>
+    <!-- logout div in medium devices -->
+    <div [routerLink]="['/auth/sign-in']" class="group size-6 md:flex mx-auto rounded-full lg:hidden hidden">
+      <p class="block group-hover:hidden mx-auto text-gray-800 dark:text-white">J</p>
+      <svg class="hidden group-hover:block size-6 text-gray-800 dark:text-white cursor-pointer" aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2" />
+      </svg>
+    </div>
+  </div>
+</aside>

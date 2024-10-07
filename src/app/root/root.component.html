@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<div (click)="settingsOpen=false">
+
+<app-sidebar
+  [ngClass]="{
+    'fixed h-screen top-0 left-0 z-50 lg:w-64 md:w-28 bg-gray-100 pt-7 pb-10 overflow-y-auto transition-transform duration-200': true,
+    '-translate-x-full': !sidebarOpen,
+    'translate-x-0': sidebarOpen
+  }">
+</app-sidebar>
+<div [ngClass]="{ 'ml-10 md:ml-36 lg:ml-72': sidebarOpen, 'mx-10': !sidebarOpen }" class="duration-200 mt-8 mr-10">
+    <app-notification></app-notification>
+    <router-outlet></router-outlet>
+</div>
+</div>
+<app-settings 
+[ngClass]="{
+    'fixed h-screen top-0 end-0 z-50  max-w-xs w-full  bg-gray-100 pt-7 pb-10 overflow-y-auto transition-transform duration-200': true,
+    'translate-x-full': !settingsOpen,
+    'translate-x-0': settingsOpen
+  }"></app-settings>

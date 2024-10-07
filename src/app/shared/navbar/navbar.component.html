@@ -1,0 +1,127 @@
+<header
+  [ngClass]="{ 'bg-gray-100 dark:bg-neutral-800': isScrolled, 'bg-transparent': !isScrolled }"
+  class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full text-sm py-3 sticky top-0 z-50"
+>
+  <nav
+    class="max-w-[95vw] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
+  >
+    <button
+    (click)="toggleSidebar()"
+    [ngClass]="{'lg:ml-56': sidebarOpen}"
+      class="group px-4 py-3.5 relative flex items-center justify-center bg-gray-200 dark:bg-neutral-700  hover:bg-gray-50 hover:dark:bg-neutral-600 active:scale-75 rounded-xl cursor-pointer duration-200 border-none"
+    >
+      <svg
+        class="size-4 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="2"
+          d="M5 7h14M5 12h14M5 17h10"
+        />
+      </svg>
+    </button>
+    <!-- <button (click)="toggleSidebar()" class="">toggle</button> -->
+
+    <!-- dark mode toogle button -->
+    <div
+      class="flex flex-row items-center gap-2 mt-5 ml-auto sm:justify-end sm:mt-0 sm:ps-5"
+    >
+      <button
+        (click)="toggleTheme()"
+        class="group px-4 py-3.5 relative flex items-center justify-center bg-gray-200 dark:bg-neutral-700 hover:bg-gray-50 hover:dark:bg-neutral-600 active:scale-75 rounded-xl cursor-pointer duration-200 border-none"
+      >
+        <svg
+          *ngIf="theme == false"
+          class="size-4 text-gray-800 dark:text-white group-active:-translate-y-full duration-200 group-active:opacity-0"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 21a9 9 0 0 1-.5-17.986V3c-.354.966-.5 1.911-.5 3a9 9 0 0 0 9 9c.239 0 .254.018.488 0A9.004 9.004 0 0 1 12 21Z"
+          />
+        </svg>
+        <svg
+          *ngIf="theme == true"
+          class="size-4 text-gray-800 dark:text-white group-active:-translate-x-full duration-200 group-active:opacity-0"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 5V3m0 18v-2M7.05 7.05 5.636 5.636m12.728 12.728L16.95 16.95M5 12H3m18 0h-2M7.05 16.95l-1.414 1.414M18.364 5.636 16.95 7.05M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"
+          />
+        </svg>
+      </button>
+      <!-- notifications -->
+      <button
+        class="group px-4 py-3.5 relative flex items-center justify-center bg-gray-200 dark:bg-neutral-700 hover:bg-gray-50 hover:dark:bg-neutral-600 active:scale-75 rounded-xl cursor-pointer duration-200 border-none"
+      >
+        <svg
+          viewBox="0 0 448 512"
+          class="size-4 fill-current text-gray-800 dark:text-gray-200 group-active:animate-bellRing"
+        >
+          <path
+            d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"
+          ></path>
+        </svg>
+      </button>
+      <!-- notification end -->
+      <!-- settings -->
+      <button
+      (click)="toggleSettings()"
+      class="group px-4 py-3.5 relative flex items-center justify-center bg-gray-200 dark:bg-neutral-700 hover:bg-gray-50 hover:dark:bg-neutral-600 active:scale-75 rounded-xl cursor-pointer duration-200 border-none"
+    >
+    <svg class="size-4 text-gray-800 dark:text-gray-200 group-active:animate-spin" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13v-2a1 1 0 0 0-1-1h-.757l-.707-1.707.535-.536a1 1 0 0 0 0-1.414l-1.414-1.414a1 1 0 0 0-1.414 0l-.536.535L14 4.757V4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v.757l-1.707.707-.536-.535a1 1 0 0 0-1.414 0L4.929 6.343a1 1 0 0 0 0 1.414l.536.536L4.757 10H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.757l.707 1.707-.535.536a1 1 0 0 0 0 1.414l1.414 1.414a1 1 0 0 0 1.414 0l.536-.535 1.707.707V20a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.757l1.707-.708.536.536a1 1 0 0 0 1.414 0l1.414-1.414a1 1 0 0 0 0-1.414l-.535-.536.707-1.707H20a1 1 0 0 0 1-1Z"/>
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+    </svg>
+    
+    </button>
+    <!-- setting end -->
+      <div class="relative">
+        <input
+          placeholder="Search..."
+          class="input focus:border-1 bg-gray-200 dark:bg-neutral-700 hover:bg-gray-50 hover:dark:bg-neutral-600 text-black dark:text-white border-gray-300 px-5 py-2.5 rounded-xl w-52 transition-all focus:w-64 outline-none"
+          name="search"
+          type="search"
+        />
+        <svg
+          class="size-6 absolute top-3 right-3 text-gray-500"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </nav>
+</header>

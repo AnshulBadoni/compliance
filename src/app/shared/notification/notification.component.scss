@@ -1,0 +1,26 @@
+@keyframes bounce {
+   
+    0% {
+        transform: translateX(100%);
+        // display: block;
+        // animation-timing-function: cubic-bezier(0,0,0.2,1);
+    }
+    10% {
+        transform: translateX(0);
+        // display: hidden;
+        // animation-timing-function: cubic-bezier(0.8,0,1,1);
+    } 
+    75% {
+        transform: translateX(0);
+        // display: block;
+        // animation-timing-function: cubic-bezier(0,0,0.2,1);
+    }
+    100% {
+        transform: translateX(108%);
+        // display: block;
+        // animation-timing-function: cubic-bezier(0,0,0.2,1);
+    }
+}
+.animateBounce {
+    animation: bounce 4s;
+}

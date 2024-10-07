@@ -1,0 +1,704 @@
+<app-headerbox type="information" message="Add tasks"></app-headerbox>
+
+<div class="mt-6 py-3">
+  <ul class="relative flex flex-row gap-x-2">
+    
+    <li class="flex items-center gap-x-2 shrink basis-0 flex-1 group w-1/2">
+      <span
+        class="min-w-7 min-h-7 group inline-flex items-center text-xs align-middle"
+      >
+        <span
+          [ngClass]="{
+            'bg-blue-700 dark:bg-violet-800': step != 1 && step != 4,
+            'bg-green-600 dark:bg-teal-700': step == 4,
+            'bg-gray-100': step == 1
+          }"
+          class="size-7 flex justify-center items-center shrink-0 font-medium text-gray-800 rounded-full group-focus:bg-gray-200 dark:bg-neutral-700 dark:text-white dark:group-focus:bg-gray-600"
+        >
+          <span [ngClass]="{ hidden: step != 1 }">1</span>
+          <svg
+            [ngClass]="{ hidden: step == 1 }"
+            class="shrink-0 size-3 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </span>
+        <span
+          class="ms-2 text-sm font-medium text-gray-800 dark:text-neutral-200"
+        >
+          Enter Task
+        </span>
+      </span>
+      <div
+        [ngClass]="{
+          'bg-blue-500 dark:bg-violet-800': step != 1 && step != 4,
+          'bg-green-500 dark:bg-teal-500': step == 4,
+          'bg-gray-100': step == 1
+        }"
+        class="w-[30vw] h-2 hidden lg:block rounded-md flex-1 group-last:hidden dark:bg-neutral-700"
+      ></div>
+      
+    </li>
+
+    <li class="flex items-center gap-x-2 shrink basis-0 flex-1 group w-3/2">
+      <span
+        class="min-w-7 min-h-7 group inline-flex items-center text-xs align-middle"
+      >
+        <span
+          [ngClass]="{
+            'bg-blue-700 dark:bg-violet-800': step > 2 && step != 4,
+            'bg-green-600 dark:bg-teal-700': step == 4,
+            'bg-gray-100': step <= 2
+          }"
+          class="size-7 flex justify-center items-center shrink-0 bg-gray-100 font-medium text-gray-800 rounded-full group-focus:bg-gray-200 dark:bg-neutral-700 dark:text-white dark:group-focus:bg-gray-600"
+        >
+          <span [ngClass]="{ hidden: step > 2 }" class="">2</span>
+          <svg
+            [ngClass]="{ hidden: step <= 2 }"
+            class="shrink-0 size-3 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </span>
+        <span
+          class="ms-2 text-sm font-medium text-gray-800 dark:text-neutral-200"
+        >
+          Task Details
+        </span>
+      </span>
+      <div
+        [ngClass]="{
+          'bg-blue-500 dark:bg-violet-800': step > 2 && step != 4,
+          'bg-green-500 dark:bg-teal-500': step == 4,
+          'bg-gray-100': step < 3
+        }"
+        class="w-[30vw] hidden lg:block h-2 rounded-md flex-1 group-last:hidden dark:bg-neutral-700"
+      ></div>
+    </li>
+
+    <li class="flex items-center gap-x-2 shrink basis-0 flex-1 group">
+      <span
+        class="min-w-7 min-h-7 group inline-flex items-center text-xs align-middle"
+      >
+        <span
+          [ngClass]="{
+            'bg-green-600 dark:bg-teal-700': step == 4,
+            'bg-gray-100': step <= 3
+          }"
+          class="size-7 flex justify-center items-center shrink-0 bg-gray-100 font-medium text-gray-800 rounded-full group-focus:bg-gray-200 dark:bg-neutral-700 dark:text-white dark:group-focus:bg-gray-600"
+        >
+          <span [ngClass]="{ hidden: step > 3 }" class="">3</span>
+          <svg
+            [ngClass]="{ hidden: step <= 3 }"
+            class="shrink-0 size-3 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </span>
+        <span
+          class="ms-2 text-sm font-medium text-gray-800 dark:text-neutral-200"
+        >
+          Attachment
+        </span>
+      </span>
+    </li>
+    <!-- End Item -->
+  </ul>
+  <!-- End Stepper Nav -->
+
+  <!-- Stepper Content -->
+  <div class="mt-5 sm:mt-8">
+    <!-- First Contnet -->
+    <div *ngIf="step == 1">
+      <div
+        class="p-4 bg-gray-50 flex justify-center items-center border border-dashed border-gray-200 rounded-xl dark:bg-neutral-800 dark:border-neutral-700"
+      >
+        <div class="grid w-full">
+          <div>
+            <!-- Card Section -->
+            <!-- Card -->
+            <div>
+              <!-- Section -->
+              <div
+                class="grid sm:grid-cols-12 gap-2 sm:gap-4 py-8 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-neutral-700 dark:first:border-transparent"
+              >
+                <div class="sm:col-span-12">
+                  <h2
+                    class="text-lg font-semibold text-gray-800 dark:text-neutral-200"
+                  >
+                    Add Task
+                  </h2>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-3">
+                  <div class="flex mt-2.5 gap-2">
+                    <img src="taskname.gif" width="20px" alt="" />
+                    <label
+                      class="text-sm font-medium text-gray-500 dark:text-neutral-500"
+                    >
+                      Task Name
+                    </label>
+                  </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-9">
+                  <input
+                    id="af-submit-application-email"
+                    type="email"
+                    placeholder="Enter Task Name"
+                    class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                  />
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-3">
+                  <div class="flex mt-2.5 gap-2">
+                    <img src="taskdescp.gif" width="20px" alt="" />
+                    <label
+                      class="inline-block text-sm font-medium text-gray-500 dark:text-neutral-500"
+                    >
+                      Task Description
+                    </label>
+                  </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-9">
+                  <textarea
+                    class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    rows="4"
+                    placeholder="Enter  task description."
+                  ></textarea>
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Section -->
+            </div>
+            <!-- End Card -->
+            <!-- End Card Section -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End First Contnet -->
+
+    <!-- First Contnet -->
+    <div style="" *ngIf="step == 2">
+      <!-- Card Section -->
+      <div class="">
+        <div class="bg-white rounded-xl p-4 sm:p-7 dark:bg-neutral-800">
+          <form>
+            <!-- Grid -->
+            <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
+              <div class="sm:col-span-3">
+                <label
+                  for="af-account-full-name"
+                  class="flex text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                >
+                  <img src="status.gif" width="20px" alt="" />
+                  Status
+                </label>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-3">
+                <div class="sm:flex">
+                  <span
+                    class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800"
+                  >
+                    Active
+                  </span>
+                </div>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-3">
+                <label
+                  for="af-account-email"
+                  class="flex text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                >
+                  <img src="category.gif" width="20px" alt="" />
+                  Category
+                </label>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-3">
+                <div class="sm:flex">
+                  <select
+                    class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                  >
+                    <option selected>Level1</option>
+                    <option>Level2</option>
+                    <option>Level3</option>
+                    <option>Level4</option>
+                  </select>
+                </div>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-3">
+                <label
+                  for="af-account-password"
+                  class="flex text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                >
+                  <img src="task.gif" width="20px" alt="" />
+                  Task Type
+                </label>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-3">
+                <div class="space-y-2">
+                  <div class="sm:flex">
+                    <select
+                      class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    >
+                      <option selected>Level1</option>
+                      <option>Level2</option>
+                      <option>Level3</option>
+                      <option>Level4</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-3">
+                <div class="inline-block">
+                  <label
+                    for="af-account-phone"
+                    class="flex text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                  >
+                    <img src="security.gif" width="20px" alt="" />
+                    Severity Level
+                  </label>
+                </div>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-3">
+                <div class="sm:flex">
+                  <select
+                    class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                  >
+                    <option selected>Level1</option>
+                    <option>Level2</option>
+                    <option>Level3</option>
+                    <option>Level4</option>
+                  </select>
+                </div>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-3">
+                <label
+                  for="af-account-gender-checkbox"
+                  class="flex text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                >
+                  <img src="frequency.gif" width="20px" alt="" />
+                  Task Frequency
+                </label>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-9">
+                <div class="sm:flex gap-4">
+                  <div class="sm:flex">
+                    <select
+                      class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    >
+                      <option selected>Level1</option>
+                      <option>Level2</option>
+                      <option>Level3</option>
+                      <option>Level4</option>
+                    </select>
+                  </div>
+
+                  <div class="sm:flex">
+                    <select
+                      class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    >
+                      <option selected>Level1</option>
+                      <option>Level2</option>
+                      <option>Level3</option>
+                      <option>Level4</option>
+                    </select>
+                  </div>
+
+                  <div class="sm:flex">
+                    <select
+                      class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    >
+                      <option selected>Level1</option>
+                      <option>Level2</option>
+                      <option>Level3</option>
+                      <option>Level4</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-3">
+                <label
+                  for="af-account-bio"
+                  class="flex text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                >
+                  <img src="schedule.gif" width="20px" alt="" />
+                  Next Due Date
+                </label>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-9">
+                <div class="sm:col-span-9">
+                  <div class="sm:flex gap-4">
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Level1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Level1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Level1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Col -->
+              <div class="sm:col-span-3">
+                <label
+                  for="af-account-bio"
+                  class="flex text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                >
+                  <img src="group.gif" width="20px" alt="" />
+                  Assigned To
+                </label>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-9">
+                <div class="sm:col-span-9">
+                  <div class="sm:flex gap-4">
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Esclation Level 1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Level1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Level1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sm:col-span-3">
+                <label
+                  for="af-account-bio"
+                  class="flex text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                >
+                  <img src="level.gif" width="20px" alt="" />
+                  Esclation Level 1
+                </label>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-9">
+                <div class="sm:col-span-9">
+                  <div class="sm:flex gap-4">
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Level1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Level1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Level1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sm:col-span-3">
+                <label
+                  for="af-account-bio"
+                  class="flex text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                >
+                  <img src="level.gif" width="20px" alt="" />
+                  Esclation Level 2
+                </label>
+              </div>
+              <!-- End Col -->
+
+              <div class="sm:col-span-9">
+                <div class="sm:col-span-9">
+                  <div class="sm:flex gap-4">
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Level1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Level1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+
+                    <div class="sm:flex">
+                      <select
+                        class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px rounded-lg sm:mt-0 sm:first:ms-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      >
+                        <option selected>Level1</option>
+                        <option>Level2</option>
+                        <option>Level3</option>
+                        <option>Level4</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Grid -->
+          </form>
+        </div>
+        <!-- End Card -->
+      </div>
+      <!-- End Card Section -->
+    </div>
+    <!-- End First Contnet -->
+
+    <!-- First Contnet -->
+    <div *ngIf="step == 3">
+      <div class="bg-white rounded-xl p-4 sm:p-7 dark:bg-neutral-800">
+        <!-- Grid -->
+        <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
+          <div class="sm:col-span-3">
+            <label
+              for="af-submit-application-resume-cv"
+              class="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
+            >
+              Add Attachment
+            </label>
+          </div>
+          <div class="sm:col-span-9">
+            <label for="af-submit-application-resume-cv" class="sr-only"
+              >Choose file</label
+            >
+            <input
+              type="file"
+              name="af-submit-application-resume-cv"
+              id="af-submit-application-resume-cv"
+              class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 file:border-0 file:bg-gray-100 file:me-4 file:py-2 file:px-4 dark:file:bg-neutral-700 dark:file:text-neutral-400"
+            />
+          </div>
+          <div class="sm:col-span-12">
+            <!-- <app-textarea></app-textarea> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Contnet -->
+    <div *ngIf="step == 4">
+      <div
+        class="p-4 h-48 bg-gray-50 flex justify-center items-center border border-dashed border-gray-200 rounded-xl dark:bg-neutral-800 dark:border-neutral-700"
+      >
+        <h3 class="text-gray-500 dark:text-neutral-500">
+          You are saving the task, Are you sure?
+        </h3>
+      </div>
+    </div>
+    <!-- End Final Contnet -->
+
+    <!-- Button Group -->
+    <div class="mt-5 flex justify-between items-center gap-x-2">
+      <button
+        type="button"
+        (click)="toggleBack()"
+        class="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+      >
+        <svg
+          class="shrink-0 size-4"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m15 18-6-6 6-6"></path>
+        </svg>
+        Back
+      </button>
+      <button
+        *ngIf="step < 4"
+        (click)="toggleNext()"
+        type="button"
+        class="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+      >
+        <p>Next</p>
+        <svg
+          class="shrink-0 size-4"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m9 18 6-6-6-6"></path>
+        </svg>
+      </button>
+      <button
+        *ngIf="step == 4"
+        (click)="toggleSubmit()"
+        type="button"
+        class="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+      >
+        <p>Finish</p>
+        <svg
+          class="shrink-0 size-4"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m9 18 6-6-6-6"></path>
+        </svg>
+      </button>
+      <button
+        type="reset"
+        (click)="toggleReset()"
+        class="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+        style="display: none"
+      >
+        Reset
+      </button>
+    </div>
+    <!-- End Button Group -->
+  </div>
+  <!-- End Stepper Content -->
+</div>
+<!-- End Stepper -->

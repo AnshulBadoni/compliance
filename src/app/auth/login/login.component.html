@@ -1,0 +1,166 @@
+<div class="grid lg:grid-cols-2">
+  <div class="my-24 lg:mx-36 mx-10">
+    <div class="p-4 sm:p-7">
+      <div>
+        <img src="logo.png" width="200" class="mb-16" alt="" />
+        <h1 class="text-[2rem] font-bold text-gray-800 dark:text-white">
+          Sign In
+        </h1>
+        <p class="text-gray-600 dark:text-neutral-400">
+          Please enter your details
+        </p>
+        <!-- <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
+          Don't have an account yet?
+          <a class="text-blue-600 decoration-2 hover:underline focus:outline-none focus:underline font-medium dark:text-blue-500" href="../examples/html/signup.html">
+            Sign up here
+          </a>
+        </p> -->
+      </div>
+
+      <div class="mt-5">
+        <!-- Form -->
+        <form [formGroup]="loginForm">
+          <div class="grid gap-y-4">
+            <!-- Form Group -->
+            <div *ngFor="let field of signInFields">
+              <label
+                [for]="field.name"
+                class="block text-sm mb-2 dark:text-white"
+                >{{ field.label }}</label
+              >
+              <div class="relative">
+                <input
+                  [type]="field.type"
+                  [id]="field.name"
+                  [name]="field.name"
+                  [formControlName]="field.name"
+                  [placeholder]="field.placeholder"
+                  class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                  required
+                  aria-describedby="email-error"
+                />
+
+                <div
+                  *ngIf="
+                    loginForm.get(field.name)?.invalid &&
+                    loginForm.get(field.name)?.dirty &&
+                    loginForm.get(field.name)?.touched
+                  "
+                  class="absolute inset-y-3 end-0 pointer-events-none pe-3"
+                >
+                  <svg
+                    class="size-5 text-red-500"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <p
+                *ngIf="
+                  loginForm.get(field.name)?.invalid &&
+                  loginForm.get(field.name)?.dirty &&
+                  loginForm.get(field.name)?.touched
+                "
+                [ngClass]="{
+                  'animate-shake':
+                    loginForm.get(field.name)?.invalid &&
+                    loginForm.get(field.name)?.dirty &&
+                    loginForm.get(field.name)?.touched
+                }"
+                class=" text-xs text-red-600 mt-2"
+                id="email-error"
+              >
+                Please include a valid {{ field.name }}
+              </p>
+            </div>
+
+            <!-- Checkbox -->
+            <div class="flex items-center">
+              <div class="flex">
+                <input
+                  id="admin"
+                  name="admin"
+                  formControlName="admin"
+                  value="true"
+                  type="checkbox"
+                  class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-offset-2 focus:ring-2 focus:ring-blue-500 dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-400 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                />
+              </div>
+
+              <div class="ms-3">
+                <label for="remember-me" class="text-sm dark:text-white"
+                  >Login as Admin</label
+                >
+              </div>
+            </div>
+            <!-- End Checkbox -->
+
+            <!-- warning -->
+            <div *ngIf="warning">
+              <div class="relative">
+                <div class="absolute inset-y-3 end-0 pointer-events-none pe-3">
+                  <svg
+                    class="size-5 text-red-500"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <p class="text-xs text-red-600 mt-2" id="email-error">
+                Invalid email or password
+              </p>
+            </div>
+            <!-- end warning -->
+
+            <button
+              type="submit"
+              [disabled]="isLoading"
+              (click)="login()"
+              [ngClass]="{ 'animate-shake': warning }"
+              class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+            >
+              <div
+                *ngIf="isLoading"
+                class="animate-spin inline-block size-5 border-[3px] border-current border-t-transparent text-white rounded-full"
+                role="status"
+                aria-label="loading"
+              >
+                <span class="sr-only">Loading...</span>
+              </div>
+              {{ isLoading ? "Loading..." : "Sign in" }}
+            </button>
+            <p class="mt-2 text-sm mx-auto text-gray-600 dark:text-neutral-400">
+              Don't have an account yet?
+              <a
+                class="text-blue-600 decoration-2 hover:underline focus:outline-none focus:underline font-medium dark:text-blue-500"
+                href="../examples/html/signup.html"
+              >
+                Sign up here
+              </a>
+            </p>
+          </div>
+        </form>
+        <!-- End Form -->
+      </div>
+    </div>
+  </div>
+  <div
+    class="hidden lg:flex ml-auto bg-blue-50 dark:bg-neutral-800 h-screen min-w-[100%]"
+  >
+    <img class="pl-48 ml-auto" width="700" src="auth-image.svg" alt="" />
+  </div>
+</div>

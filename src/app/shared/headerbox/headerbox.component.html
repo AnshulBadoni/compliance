@@ -1,0 +1,30 @@
+<div class="flex flex-wrap">
+    <div class="flex flex-col gap-1">
+        <h1 class="text-24 lg:text-30 font-bold text-gray-900 dark:text-gray-200">
+            {{message}}
+            <span *ngIf="type == 'greeting'" class="text-blue-500">Jessy Schwarz</span>
+        </h1>
+        <p class="text-14 lg:text-16 font-normal text-gray-600 dark:text-gray-300">
+            Access daily task, collaborate and more.
+        </p>
+    </div>
+
+    <button
+    *ngIf="type == 'greeting'"
+    [routerLink]="['task']"
+        class="group flex ml-auto mx-4 mt-4 items-center justify-start size-11 bg-blue-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:scale-75">
+        <div
+            class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
+            <svg class="size-11 group-hover:size-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd"
+                    d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4.243a1 1 0 1 0-2 0V11H7.757a1 1 0 1 0 0 2H11v3.243a1 1 0 1 0 2 0V13h3.243a1 1 0 1 0 0-2H13V7.757Z"
+                    clip-rule="evenodd" />
+            </svg>
+        </div>
+        <div
+            class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+            Add Task
+        </div>
+    </button>
+</div>
